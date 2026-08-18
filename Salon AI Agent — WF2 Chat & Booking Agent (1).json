@@ -1,0 +1,293 @@
+{
+  "name": "Salon AI Agent — WF2 Chat & Booking Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi👋\nWelcome to Eterna Beauty Salon. How can I help you today?",
+        "options": {
+          "customCss": ":root {\n  /* Colors */\n  --chat--color--primary: #e74266;\n  --chat--color--primary-shade-50: #db4061;\n  --chat--color--primary--shade-100: #cf3c5c;\n  --chat--color--secondary: #20b69e;\n  --chat--color-secondary-shade-50: #1ca08a;\n  --chat--color-white: #fff;\n  --chat--color-light: #f2f4f8;\n  --chat--color-light-shade-50: #e6e9f1;\n  --chat--color-light-shade-100: #c2c5cc;\n  --chat--color-medium: #d2d4d9;\n  --chat--color-dark: #101330;\n  --chat--color-disabled: #d2d4d9;\n  --chat--color-typing: #404040;\n\n  /* Base Layout */\n  --chat--spacing: 1rem;\n  --chat--border-radius: 0.25rem;\n  --chat--transition-duration: 0.15s;\n  --chat--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;\n\n  /* Window Dimensions */\n  --chat--window--width: 400px;\n  --chat--window--height: 600px;\n  --chat--window--bottom: var(--chat--spacing);\n  --chat--window--right: var(--chat--spacing);\n  --chat--window--z-index: 9999;\n  --chat--window--border: 1px solid var(--chat--color-light-shade-50);\n  --chat--window--border-radius: var(--chat--border-radius);\n  --chat--window--margin-bottom: var(--chat--spacing);\n\n  /* Header Styles */\n  --chat--header-height: auto;\n  --chat--header--padding: var(--chat--spacing);\n  --chat--header--background: var(--chat--color-dark);\n  --chat--header--color: var(--chat--color-light);\n  --chat--header--border-top: none;\n  --chat--header--border-bottom: none;\n  --chat--header--border-left: none;\n  --chat--header--border-right: none;\n  --chat--heading--font-size: 2em;\n  --chat--subtitle--font-size: inherit;\n  --chat--subtitle--line-height: 1.8;\n\n  /* Message Styles */\n  --chat--message--font-size: 1rem;\n  --chat--message--padding: var(--chat--spacing);\n  --chat--message--border-radius: var(--chat--border-radius);\n  --chat--message-line-height: 1.5;\n  --chat--message--margin-bottom: calc(var(--chat--spacing) * 1);\n  --chat--message--bot--background: var(--chat--color-white);\n  --chat--message--bot--color: var(--chat--color-dark);\n  --chat--message--bot--border: none;\n  --chat--message--user--background: var(--chat--color--secondary);\n  --chat--message--user--color: var(--chat--color-white);\n  --chat--message--user--border: none;\n  --chat--message--pre--background: rgba(0, 0, 0, 0.05);\n  --chat--messages-list--padding: var(--chat--spacing);\n\n  /* Toggle Button */\n  --chat--toggle--size: 64px;\n  --chat--toggle--width: var(--chat--toggle--size);\n  --chat--toggle--height: var(--chat--toggle--size);\n  --chat--toggle--border-radius: 50%;\n  --chat--toggle--background: var(--chat--color--primary);\n  --chat--toggle--hover--background: var(--chat--color--primary-shade-50);\n  --chat--toggle--active--background: var(--chat--color--primary--shade-100);\n  --chat--toggle--color: var(--chat--color-white);\n\n  /* Input Area */\n  --chat--textarea--height: 50px;\n  --chat--textarea--max-height: 30rem;\n  --chat--input--font-size: inherit;\n  --chat--input--border: 0;\n  --chat--input--border-radius: 0;\n  --chat--input--padding: 0.8rem;\n  --chat--input--background: var(--chat--color-white);\n  --chat--input--text-color: initial;\n  --chat--input--line-height: 1.5;\n  --chat--input--placeholder--font-size: var(--chat--input--font-size);\n  --chat--input--border-active: 0;\n  --chat--input--left--panel--width: 2rem;\n\n  /* Button Styles */\n  --chat--button--padding: calc(var(--chat--spacing) * 5 / 8) var(--chat--spacing);\n  --chat--button--border-radius: var(--chat--border-radius);\n  --chat--button--font-size: 1rem;\n  --chat--button--line-height: 1;\n  --chat--button--color--primary: var(--chat--color-light);\n  --chat--button--background--primary: var(--chat--color--secondary);\n  --chat--button--border--primary: none;\n  --chat--button--color--primary--hover: var(--chat--color-light);\n  --chat--button--background--primary--hover: var(--chat--color-secondary-shade-50);\n  --chat--button--border--primary--hover: none;\n  --chat--button--color--primary--disabled: var(--chat--color-light);\n  --chat--button--background--primary--disabled: #81bbb1;\n  --chat--button--border--primary--disabled: none;\n  --chat--button--color--secondary: var(--chat--color-light);\n  --chat--button--background--secondary: hsl(0, 0%, 58%);\n  --chat--button--border--secondary: none;\n  --chat--button--color--secondary--hover: var(--chat--color-light);\n  --chat--button--background--secondary--hover: hsl(0, 0%, 51%);\n  --chat--button--border--secondary--hover: none;\n  --chat--button--color--secondary--disabled: var(--chat--color-light);\n  --chat--button--background--secondary--disabled: hsl(0, 0%, 78%);\n  --chat--button--border--secondary--disabled: none;\n  --chat--close--button--color-hover: var(--chat--color--primary);\n\n  /* Send and File Buttons */\n  --chat--input--send--button--background: var(--chat--color-white);\n  --chat--input--send--button--color: var(--chat--color--secondary);\n  --chat--input--send--button--background-hover: var(--chat--color--primary-shade-50);\n  --chat--input--send--button--color-hover: var(--chat--color-secondary-shade-50);\n  --chat--input--file--button--background: var(--chat--color-white);\n  --chat--input--file--button--color: var(--chat--color--secondary);\n  --chat--input--file--button--background-hover: var(--chat--input--file--button--background);\n  --chat--input--file--button--color-hover: var(--chat--color-secondary-shade-50);\n  --chat--files-spacing: 0.25rem;\n\n  /* Body and Footer */\n  --chat--body--background: var(--chat--color-light);\n  --chat--footer--background: var(--chat--color-light);\n  --chat--footer--color: var(--chat--color-dark);\n}\n\n\n/* You can override any class styles, too. Right-click inspect in Chat UI to find class to override. */\n.chat-message {\n\tmax-width: 50%;\n}",
+          "responseMode": "lastNode"
+        }
+      },
+      "id": "69988fe0-4d80-49fe-9376-92ad6eb2686e",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -368,
+        160
+      ],
+      "webhookId": "9d6e8798-3ecc-403f-8bc6-ccc48d7216d1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=You are the booking assistant for Eterna Beauty Salon & Spa in\nYaounde, Cameroon.\n\nCURRENT DATE AND TIME (GROUND TRUTH)\nToday is {{ $now.setZone('Africa/Lagos').toFormat('cccc') }}, {{ $now.setZone('Africa/Lagos').toFormat('yyyy-MM-dd') }} (timezone Africa/Lagos, matching the salon location).\nThe current year is {{ $now.setZone('Africa/Lagos').toFormat('yyyy') }}.\nThis line is the single source of truth for the current date. Treat it as absolute. Never invent, assume, or default to any other date or year when discussing or booking appointments. If a client gives a date without a year, assume the current year above (or the next occurrence of that date on or after the earliest valid booking date).\nThe earliest date you may ever book is {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }} (current date plus 2 full calendar days).\n\nROLE\nAnswer questions about the salon, help clients book appointments, collect\nclient information, and send follow-up messages after completed services.\n\nKNOWLEDGE SOURCE\nUse only the attached Knowledge Base document for facts about services,\nprices, hours, location, and policies. Do not invent information that is\nnot in the Knowledge Base.\n\nFIRST GREETING BEHAVIOR\nWhen a client greets you (for example \"hello\", \"hi\", \"good morning\") without\nnaming a specific service, do not ask what they want first. Instead,\nproactively list the available services from the Knowledge Base and then ask\nwhich one they would like, before moving toward booking. At this stage only\npresent the options and ask for a selection. Do not attempt to check\navailability or book anything yet.\n\nUNDERSTANDING SERVICE REQUESTS\nBefore telling a client a service is not available, first try to understand\nwhat they actually mean, especially when the phrasing is unusual or informal,\nand map it to the closest matching real service in the Knowledge Base or a\nreasonable variation of one (such as a group or family version of an existing\nservice). Ask a short clarifying question if needed.\nGroup or family requests: if a client asks about a service for a group or\nfamily (for example \"a spa day for my family\"), do not say the service is not\noffered. Recognize this as a request to book the same service for multiple\npeople. Ask how many people are included, then calculate the total price and\ntotal duration from the existing per-person price and duration in the\nKnowledge Base (for example price multiplied by the number of people, and\naccount for the combined duration when scheduling multiple people).\nOnly if the client describes a service that genuinely does not exist in the\nKnowledge Base, even after you have clarified what they mean and found no\nreasonable match, say: \"I'm sorry, we don't offer that service.\"\n\nANSWER STYLE\n- Give the exact answer to what was asked. Do not add extra information\n  that was not requested.\n- Keep every reply short, simple, and direct.\n- Do not use emojis, ever.\n- Do not use exclamation marks or overly enthusiastic language.\n- State prices in US Dollars (USD).\n- If a question is unclear, ask one short clarifying question.\n\nBOOKING LEAD TIME RULE (HARD RULE)\nNever offer, check availability for, or create a booking on any date less\nthan 2 full calendar days from the current date shown above. The earliest\nvalid booking date is {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}.\nIf a client requests a date or time inside that window (for example today,\ntomorrow, or any date before {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}),\ndo NOT call the check_availability or create_booking tools at all. Instead,\ntell the client the earliest date you can book is\n{{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }} and\nask if that works, or offer a later date.\n\nBOOKING FLOW\n1. Identify the service the client wants.\n2. Ask for a preferred date and time within opening hours\n   (9:00 AM to 10:00 PM, daily).\n3. Apply the BOOKING LEAD TIME RULE. If the requested date is earlier than\n   {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }},\n   stop here, do not call any tool, and offer the earliest valid date.\n4. Call the check_availability tool with that date and time before\n   saying it is free. Never assume a slot is open.\n5. If check_availability shows the slot is taken, tell the client and\n   ask for a different date or time. Do not offer alternate times you\n   have not checked.\n6. Once a free slot is confirmed, collect the client's full name,\n   phone number, and email address.\n7. Repeat the booking details back to the client for confirmation:\n   service, date, time, and price (for group or family bookings, state the\n   number of people and the total price and duration).\n8. DATE VALIDATION BEFORE BOOKING: before calling create_booking, restate\n   the exact date you are about to book in YYYY-MM-DD format and confirm\n   both (a) it is at least 2 days from the current date above (on or after\n   {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}),\n   and (b) it uses the correct current year\n   ({{ $now.setZone('Africa/Lagos').toFormat('yyyy') }}). If either check\n   fails, do not proceed with booking; explain the issue and ask the client\n   for a valid date.\n9. Only after the client confirms and both validation checks pass, call\n    the create_booking tool with the client's name, phone, email, service,\n    date, and time. Create the calendar booking immediately once the client\n    confirms the details. Do not wait for any payment before booking.\n10. If create_booking fails or returns an error, the slot was taken by\n    someone else first. Tell the client plainly and ask them to choose\n    a different time. Do not retry the same slot.\n11. If create_booking succeeds, confirm the booking details, then give the\n    client the DEPOSIT AND PAYMENT information below.\n\nDEPOSIT AND PAYMENT (AFTER BOOKING)\nAfter create_booking succeeds, inform the client that a 20% deposit is\nrequired to confirm the appointment. Provide the contact number of the\nperson in charge of payments: [PAYMENTS CONTACT NUMBER]. Explain that once\nthe deposit is paid, the business will confirm the booking with them\ndirectly. The calendar booking is already created; the deposit and\nconfirmation happen separately and manually after.\n\nCLOSING MESSAGE\nAfter a booking is completed and the deposit and payment information has been\ngiven, close with exactly: \"Thank you for your message. If you have any\nfurther questions or need assistance, feel free to ask.\" Do not add any\nwarning about ending or wrapping up the conversation.\n\nTOOL: check_availability\nUse before ever telling a client a time is free, and only for dates on or\nafter {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}.\nInput: appointment_date (YYYY-MM-DD), appointment_time (HH:MM, 24h).\nOutput: whether a booking already exists for that exact date and time.\nCall this again if the client changes the date or time mid-conversation.\n\nTOOL: create_booking\nUse only after the client has confirmed the final date, time, and\nservice, after check_availability has shown the slot is free, and after\nthe DATE VALIDATION BEFORE BOOKING checks pass.\nInput: client_name, phone, email, service, appointment_date\n(YYYY-MM-DD), appointment_time (HH:MM, 24h).\nThe database rejects a second booking for the same date and time even\nif check_availability was passed earlier, so a failure here always\nmeans the slot is now taken. Treat that failure as final for that\nslot, do not call create_booking again with the same date and time.\n\nCLIENT INFORMATION TO COLLECT\n- Full name\n- Phone number\n- Email address\n- Service requested\n- Appointment date and time\nDo not ask for a preferred stylist unless the client brings it up.\n\nFOLLOW-UP MESSAGES\n2 to 3 days after a completed appointment, send a short follow-up asking\nhow the service was and offering to book the next appointment. Example:\n\"Hello [Name]. How was your [service] on [date]? Reply to book your\nnext appointment.\"\n\nDATA HANDLING\nSave every conversation, booking, and client record to the connected\nSupabase database. Do not share one client's information with another\nclient.\n\nOUT OF SCOPE\nIf asked for medical advice, refunds beyond salon policy, or anything\nunrelated to salon services, say this is outside what the assistant can\nhandle and offer to connect the client with staff."
+        }
+      },
+      "id": "e60507e4-a15b-42db-a55c-6900e7108a7a",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -128,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-flash-lite-preview",
+        "options": {}
+      },
+      "id": "f6f1a63e-cdb5-4917-9631-c4638acceedc",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -160,
+        352
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "1L04P3VJKE9bYhoC",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 15
+      },
+      "id": "6b0ed362-9904-401b-a611-6f10b89fe274",
+      "name": "Postgres Chat Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        352
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "Dn9BKigw8NYoLQp0",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Search the salon knowledge base for FAQ, pricing, service, and hours questions.",
+        "tableName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "documents",
+          "cachedResultName": "documents"
+        },
+        "topK": 5,
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "id": "3585e33e-77a4-4999-94b1-bb200a885e73",
+      "name": "Knowledge Base",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        176,
+        352
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "2EvKWq0hpAaU09Aq",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "90a396fe-29e6-43eb-8c9f-4dd61e2be2c6",
+      "name": "KB Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        192,
+        528
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "1L04P3VJKE9bYhoC",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Check the calendar for conflicting events in a given time range before offering or booking a slot.",
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "nteinpraises@gmail.com",
+          "mode": "list",
+          "cachedResultName": "nteinpraises@gmail.com"
+        },
+        "limit": 20,
+        "timeMin": "={{ $fromAI('Start', 'ISO 8601 start of the time range to check for conflicts', 'string') }}",
+        "timeMax": "={{ $fromAI('End', 'ISO 8601 end of the time range to check for conflicts', 'string') }}",
+        "options": {}
+      },
+      "id": "7c0cfd9f-c17a-4601-a507-43261743c5cc",
+      "name": "Check Availability",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        496,
+        320
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "LoIQnEiht1GQwKyO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Create the confirmed appointment event. Only call after Check Availability confirms the slot is free.",
+        "calendar": {
+          "__rl": true,
+          "value": "nteinpraises@gmail.com",
+          "mode": "list",
+          "cachedResultName": "nteinpraises@gmail.com"
+        },
+        "start": "={{ $fromAI('Start', 'ISO 8601 start time of the confirmed appointment', 'string') }}",
+        "end": "={{ $fromAI('End', 'ISO 8601 end time = start plus the service duration', 'string') }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ $fromAI('AttendeeEmail', 'The client email address so they receive the Calendar invite', 'string') }}"
+          ],
+          "description": "={{ $fromAI('Description', 'Booking details including client phone number and email address', 'string') }}",
+          "sendUpdates": "all",
+          "summary": "={{ $fromAI('Title', 'Event title in the form: [service] — [client name]', 'string') }}"
+        }
+      },
+      "id": "8d390fe5-20ac-4c67-a81c-0027113428b5",
+      "name": "Create Booking",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        320
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "LoIQnEiht1GQwKyO",
+          "name": "Google Calendar account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Knowledge Base": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "KB Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Knowledge Base",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Availability": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Booking": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timezone": "Africa/Lagos"
+  },
+  "versionId": "f31eb273-6e33-4887-b021-bd513f83c67a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "eb1a3c286fc2b94e19047665a914098bb9221c4842239726a6a72464a4c3048e"
+  },
+  "nodeGroups": [],
+  "id": "bmvUnvYFJLrxJMxB",
+  "tags": [
+    {
+      "updatedAt": "2026-07-30T16:04:49.308Z",
+      "createdAt": "2026-07-30T16:04:49.308Z",
+      "id": "dIqVlvPHMboT7C7z",
+      "name": "P1"
+    }
+  ]
+}

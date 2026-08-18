@@ -1,0 +1,217 @@
+{
+  "name": "Salon AI Agent — WF3 Follow-up Messages",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "379027b6-96cb-4666-90fd-cf57cc7e0b20",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -400,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "nteinpraises@gmail.com",
+          "mode": "list",
+          "cachedResultName": "nteinpraises@gmail.com"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.minus({ hours: 72 }) }}",
+        "timeMax": "={{ $now.minus({ hours: 48 }) }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "e39c2898-a0ab-45fe-8697-edd01d1c7674",
+      "name": "Get Many Events",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -176,
+        208
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "LoIQnEiht1GQwKyO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "attendee-email-present",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.attendees?.[0]?.email }}",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "27c54b19-eecf-484f-b10d-5cd1890f1afe",
+      "name": "Has Attendee Email?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        336,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.attendees[0].email }}",
+        "subject": "How was your visit?",
+        "emailType": "text",
+        "message": "=How was your {{ $json.summary }}? Reply to book your next appointment.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "b6779bea-806a-4b8c-ace9-2d02bfa1c806",
+      "name": "Send Follow-up",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        208
+      ],
+      "webhookId": "db343ef2-a80d-4952-aea3-4e3f8e24e021",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "25PKou4R0vNmQoyy",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c84d19f6-1d7a-461e-b4d1-ef62c88c618e",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        64,
+        208
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Many Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Many Events": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Attendee Email?": {
+      "main": [
+        [
+          {
+            "node": "Send Follow-up",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Follow-up": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Has Attendee Email?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timezone": "Africa/Douala",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "45f07f5f-1d03-437f-abab-aac9930ad4e2",
+  "meta": {
+    "instanceId": "eb1a3c286fc2b94e19047665a914098bb9221c4842239726a6a72464a4c3048e"
+  },
+  "nodeGroups": [],
+  "id": "uhOUzZFdjkwgMPoO",
+  "tags": [
+    {
+      "updatedAt": "2026-07-30T16:04:49.308Z",
+      "createdAt": "2026-07-30T16:04:49.308Z",
+      "id": "dIqVlvPHMboT7C7z",
+      "name": "P1"
+    }
+  ]
+}
