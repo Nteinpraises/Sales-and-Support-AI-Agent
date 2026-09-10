@@ -1,5 +1,4 @@
 {
-  "name": "Salon AI Agent — WF3 Follow-up Messages",
   "nodes": [
     {
       "parameters": {
@@ -11,45 +10,69 @@
           ]
         }
       },
-      "id": "379027b6-96cb-4666-90fd-cf57cc7e0b20",
-      "name": "Schedule Trigger",
+      "id": "3f323ce0-bc59-4803-95cb-8ed8a06b66f0",
+      "name": "Daily at 9 AM",
       "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
+      "typeVersion": 1.4,
       "position": [
-        -400,
-        208
+        0,
+        496
       ]
     },
     {
       "parameters": {
-        "operation": "getAll",
-        "calendar": {
+        "documentId": {
           "__rl": true,
-          "value": "nteinpraises@gmail.com",
+          "value": "13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM",
           "mode": "list",
-          "cachedResultName": "nteinpraises@gmail.com"
+          "cachedResultName": "Potential Leads Intake Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM/edit?usp=drivesdk"
         },
-        "returnAll": true,
-        "timeMin": "={{ $now.minus({ hours: 72 }) }}",
-        "timeMax": "={{ $now.minus({ hours: 48 }) }}",
-        "options": {
-          "orderBy": "startTime"
-        }
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Bookings"
+        },
+        "options": {}
       },
-      "id": "e39c2898-a0ab-45fe-8697-edd01d1c7674",
-      "name": "Get Many Events",
-      "type": "n8n-nodes-base.googleCalendar",
-      "typeVersion": 1.3,
+      "id": "6875f5a5-18dc-4268-bf43-4296598990be",
+      "name": "Read All Bookings",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
       "position": [
-        -176,
-        208
+        224,
+        496
       ],
       "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "LoIQnEiht1GQwKyO",
-          "name": "Google Calendar account"
+        "googleSheetsOAuth2Api": {
+          "id": "Bf9OOM7PnwbZsnOq",
+          "name": "Google Sheets account"
         }
       }
+    },
+    {
+      "parameters": {},
+      "id": "3e68fae9-5461-4230-84f4-78d4c863fa4e",
+      "name": "No Action — Skip Booking",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        896,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c12a1cf0-8f2c-41f6-8837-deafaabeedf3",
+      "name": "Loop Over Bookings",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        448,
+        496
+      ]
     },
     {
       "parameters": {
@@ -62,128 +85,561 @@
           },
           "conditions": [
             {
-              "id": "attendee-email-present",
+              "id": "stage-not-none",
+              "leftValue": "={{ $json.stage }}",
+              "rightValue": "none",
               "operator": {
                 "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              },
-              "leftValue": "={{ $json.attendees?.[0]?.email }}",
-              "rightValue": ""
+                "operation": "notEquals"
+              }
             }
           ],
           "combinator": "and"
         },
         "options": {}
       },
-      "id": "27c54b19-eecf-484f-b10d-5cd1890f1afe",
-      "name": "Has Attendee Email?",
+      "id": "d0bbb717-2485-4374-b0cd-6b816ae2f6bf",
+      "name": "Action Required?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        336,
+        672,
         224
       ]
     },
     {
       "parameters": {
-        "sendTo": "={{ $json.attendees[0].email }}",
-        "subject": "How was your visit?",
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "is-fu1",
+                    "leftValue": "={{ $json.stage }}",
+                    "rightValue": "followup1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "is-fu2",
+                    "leftValue": "={{ $json.stage }}",
+                    "rightValue": "followup2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "is-post",
+                    "leftValue": "={{ $json.stage }}",
+                    "rightValue": "postservice",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c1f265a9-7ea4-409e-bcc0-7bc467bf1b09",
+      "name": "Route by Stage",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        896,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "={{ $json[\"Full Name\"].split(\" \")[0] }}, your Eterna Beauty appointment is coming up",
         "emailType": "text",
-        "message": "=How was your {{ $json.summary }}? Reply to book your next appointment.",
+        "message": "=Hello {{ $json[\"Full Name\"].split(\" \")[0] }},\n\nThank you for booking with us at Eterna Beauty Salon & Spa. We're so looking forward to seeing you for your {{ $json.Service }} on {{ $json[\"Appointment Date\"] }}.\n\nIn the meantime, if you have any questions or would like to adjust your appointment, please don't hesitate to reach out. We're here to make sure your experience is exactly what you're hoping for.\n\nTake care, and we'll see you soon.\n\nWarm regards,\nThe Eterna Beauty Team",
         "options": {
           "appendAttribution": false
         }
       },
-      "id": "b6779bea-806a-4b8c-ace9-2d02bfa1c806",
-      "name": "Send Follow-up",
+      "id": "29c16420-ef8e-4f61-a2b6-ce2ca83839f3",
+      "name": "Send Follow-Up 1 — Check-In",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        624,
-        208
+        1120,
+        16
       ],
-      "webhookId": "db343ef2-a80d-4952-aea3-4e3f8e24e021",
+      "webhookId": "3cc2b176-f340-42ed-ab41-6f9db359a600",
       "credentials": {
         "gmailOAuth2": {
-          "id": "25PKou4R0vNmQoyy",
+          "id": "FgV58Ortd5KrEDCJ",
           "name": "Gmail account"
         }
       }
     },
     {
       "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM",
+          "mode": "list",
+          "cachedResultName": "Potential Leads Intake Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Bookings"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "Email"
+          ],
+          "value": {
+            "Email": "={{ $(\"Determine Follow-Up Stage\").item.json.Email }}",
+            "Follow-up 1 Sent": "Yes",
+            "Booking Status": "Confirmed"
+          },
+          "schema": [
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow-up 1 Sent",
+              "displayName": "Follow-up 1 Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Booking Status",
+              "displayName": "Booking Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
         "options": {}
       },
-      "id": "c84d19f6-1d7a-461e-b4d1-ef62c88c618e",
-      "name": "Loop Over Items",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
+      "id": "ed9ceaee-49c4-4efa-b0e7-ae292b822311",
+      "name": "Mark Follow-Up 1 Sent",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
       "position": [
-        64,
+        1344,
+        448
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Bf9OOM7PnwbZsnOq",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=A little something before your {{ $json.Service }} appointment",
+        "emailType": "text",
+        "message": "=Hello {{ $json[\"Full Name\"].split(\" \")[0] }},\n\nYour {{ $json.Service }} appointment at Eterna Beauty Salon & Spa is just around the corner, and we wanted to share a few tips to help you get the most out of your visit.\n\nArrive a few minutes early so you can relax and let us know if there is anything specific you would like us to focus on. Whether it is a particular style, a concern you have been thinking about, or simply a preference for how you like things done — we are here to listen.\n\nWe genuinely care about your experience and want you to leave feeling your absolute best.\n\nLooking forward to welcoming you.\n\nWarm regards,\nThe Eterna Beauty Team",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "2083a477-8eaa-45d2-8d33-a12b8a7d54bf",
+      "name": "Send Follow-Up 2 — Helpful Tips",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
         208
-      ]
+      ],
+      "webhookId": "0aaecd05-636b-43f9-bf0c-0547c9dbdbd5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FgV58Ortd5KrEDCJ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM",
+          "mode": "list",
+          "cachedResultName": "Potential Leads Intake Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Bookings"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "Email"
+          ],
+          "value": {
+            "Email": "={{ $(\"Determine Follow-Up Stage\").item.json.Email }}",
+            "Follow-up 2 Sent": "Yes",
+            "Booking Status": "Confirmed"
+          },
+          "schema": [
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow-up 2 Sent",
+              "displayName": "Follow-up 2 Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Booking Status",
+              "displayName": "Booking Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8dd5b6e6-29d9-48a5-a5a2-ab959e50326e",
+      "name": "Mark Follow-Up 2 Sent",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1344,
+        640
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Bf9OOM7PnwbZsnOq",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=How was your {{ $json.Service }} experience, {{ $json[\"Full Name\"].split(\" \")[0] }}?",
+        "emailType": "text",
+        "message": "=Hello {{ $json[\"Full Name\"].split(\" \")[0] }},\n\nWe hope your {{ $json.Service }} appointment at Eterna Beauty Salon & Spa was everything you hoped for.\n\nYour opinion genuinely matters to us. If you have a moment, we would love to hear how your visit went — what you loved, what we could do better, or simply how you are feeling about the results.\n\nYou can reply directly to this email with your thoughts. Every piece of feedback helps us continue improving so we can give every client the best possible experience.\n\nThank you for choosing Eterna Beauty. We hope to see you again soon.\n\nWarm regards,\nThe Eterna Beauty Team",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "20604e8d-4df4-4c18-a1bd-a8eecf30b022",
+      "name": "Send Post-Service Follow-Up — Feedback",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        400
+      ],
+      "webhookId": "10d9de3e-e4c3-4de7-8ce8-eeb3238849d0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FgV58Ortd5KrEDCJ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM",
+          "mode": "list",
+          "cachedResultName": "Potential Leads Intake Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13ExIuTwCMx6TpfrDwOrNTyjxXHKBo_HmDx-P2mkbOiM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Bookings"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "Email"
+          ],
+          "value": {
+            "Email": "={{ $(\"Determine Follow-Up Stage\").item.json.Email }}",
+            "Post-Service Sent": "Yes",
+            "Booking Status": "Awaiting Feedback"
+          },
+          "schema": [
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Post-Service Sent",
+              "displayName": "Post-Service Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Booking Status",
+              "displayName": "Booking Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1ae981e3-2992-4894-8a9e-33da833b6fba",
+      "name": "Mark Post-Service Sent",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1344,
+        832
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Bf9OOM7PnwbZsnOq",
+          "name": "Google Sheets account"
+        }
+      }
     }
   ],
-  "pinData": {},
   "connections": {
-    "Schedule Trigger": {
+    "Daily at 9 AM": {
       "main": [
         [
           {
-            "node": "Get Many Events",
+            "node": "Read All Bookings",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get Many Events": {
+    "Read All Bookings": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Loop Over Bookings",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Has Attendee Email?": {
+    "No Action — Skip Booking": {
       "main": [
         [
           {
-            "node": "Send Follow-up",
+            "node": "Loop Over Bookings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Bookings": {
+      "main": [
+        [
+          {
+            "node": "No Action — Skip Booking",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Loop Over Items",
+            "node": "Action Required?",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Send Follow-up": {
+    "Action Required?": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Route by Stage",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Action — Skip Booking",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Loop Over Items": {
+    "Route by Stage": {
       "main": [
-        [],
         [
           {
-            "node": "Has Attendee Email?",
+            "node": "Send Follow-Up 1 — Check-In",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Follow-Up 2 — Helpful Tips",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Post-Service Follow-Up — Feedback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Follow-Up 1 — Check-In": {
+      "main": [
+        [
+          {
+            "node": "Mark Follow-Up 1 Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Follow-Up 1 Sent": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Bookings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Follow-Up 2 — Helpful Tips": {
+      "main": [
+        [
+          {
+            "node": "Mark Follow-Up 2 Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Follow-Up 2 Sent": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Bookings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Post-Service Follow-Up — Feedback": {
+      "main": [
+        [
+          {
+            "node": "Mark Post-Service Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Post-Service Sent": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Bookings",
             "type": "main",
             "index": 0
           }
@@ -191,27 +647,37 @@
       ]
     }
   },
-  "active": true,
-  "settings": {
-    "executionOrder": "v1",
-    "binaryMode": "separate",
-    "timezone": "Africa/Douala",
-    "timeSavedMode": "fixed",
-    "callerPolicy": "workflowsFromSameOwner",
-    "availableInMCP": false
-  },
-  "versionId": "45f07f5f-1d03-437f-abab-aac9930ad4e2",
-  "meta": {
-    "instanceId": "eb1a3c286fc2b94e19047665a914098bb9221c4842239726a6a72464a4c3048e"
-  },
-  "nodeGroups": [],
-  "id": "uhOUzZFdjkwgMPoO",
-  "tags": [
+  "pinData": {},
+  "nodeGroups": [
     {
-      "updatedAt": "2026-07-30T16:04:49.308Z",
-      "createdAt": "2026-07-30T16:04:49.308Z",
-      "id": "dIqVlvPHMboT7C7z",
-      "name": "P1"
+      "id": "db4633c9-0d90-464a-b38c-4cbf04df0abd",
+      "name": "Stage 1 — Day-After-Booking Check-In",
+      "nodeIds": [
+        "29c16420-ef8e-4f61-a2b6-ce2ca83839f3",
+        "ed9ceaee-49c4-4efa-b0e7-ae292b822311"
+      ],
+      "description": "Sends a warm check-in email the day after the booking was made and records it in the sheet."
+    },
+    {
+      "id": "7f76d32e-6e5f-4a3e-a902-988f4ae7ff82",
+      "name": "Stage 2 — Second Follow-Up",
+      "nodeIds": [
+        "2083a477-8eaa-45d2-8d33-a12b8a7d54bf",
+        "8dd5b6e6-29d9-48a5-a5a2-ab959e50326e"
+      ],
+      "description": "Sends helpful pre-appointment tips 2 days after Follow-Up 1 and updates the status."
+    },
+    {
+      "id": "2c35714a-01d7-46d4-ba4e-c7cef9ae0510",
+      "name": "Stage 3 — Post-Service Feedback",
+      "nodeIds": [
+        "20604e8d-4df4-4c18-a1bd-a8eecf30b022",
+        "1ae981e3-2992-4894-8a9e-33da833b6fba"
+      ],
+      "description": "After the appointment date passes, asks for feedback and sets status to Awaiting Feedback."
     }
-  ]
+  ],
+  "meta": {
+    "instanceId": "61d4b402587ea0a8e4e00ab9ed2eed997f4bbab8707dfdcaf438932bd6c82ee7"
+  }
 }
