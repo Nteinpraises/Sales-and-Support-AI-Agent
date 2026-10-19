@@ -10,13 +10,13 @@
           ]
         }
       },
-      "id": "3f323ce0-bc59-4803-95cb-8ed8a06b66f0",
+      "id": "0ac69bcd-f522-497f-bce2-d70b97637295",
       "name": "Daily at 9 AM",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.4,
       "position": [
-        0,
-        496
+        -960,
+        464
       ]
     },
     {
@@ -35,43 +35,32 @@
         },
         "options": {}
       },
-      "id": "6875f5a5-18dc-4268-bf43-4296598990be",
+      "id": "7e0ac5b1-020b-476c-9604-9c0e5be95ba9",
       "name": "Read All Bookings",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        224,
-        496
+        -736,
+        464
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Bf9OOM7PnwbZsnOq",
+          "id": "IpJCXuOk2tsquBze",
           "name": "Google Sheets account"
         }
       }
     },
     {
-      "parameters": {},
-      "id": "3e68fae9-5461-4230-84f4-78d4c863fa4e",
-      "name": "No Action — Skip Booking",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        896,
-        0
-      ]
-    },
-    {
       "parameters": {
-        "options": {}
+        "jsCode": "const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Africa/Douala' });\nconst toDay = (v) => {\n  const m = String(v || '').trim().match(/(\\d{4})-(\\d{2})-(\\d{2})/);\n  return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000 : null;\n};\nconst t = toDay(today);\nconst yes = (v) => String(v || '').trim().toLowerCase() === 'yes';\nreturn $input.all()\n  .filter((i) => i.json.Email && i.json['Booking Status'] !== 'Cancelled')\n  .map((i) => {\n    const r = i.json;\n    const appt = toDay(r['Appointment Date']);\n    const booked = toDay(r['Booking Date']);\n    let stage = 'none';\n    if (appt !== null && t > appt && !yes(r['Post-Service Sent'])) stage = 'postservice';\n    else if (appt !== null && booked !== null && t <= appt && t - booked >= 3 && yes(r['Follow-up 1 Sent']) && !yes(r['Follow-up 2 Sent'])) stage = 'followup2';\n    else if (booked !== null && t - booked >= 1 && t <= (appt === null ? t : appt) && !yes(r['Follow-up 1 Sent'])) stage = 'followup1';\n    return { json: { ...r, stage } };\n  });"
       },
-      "id": "c12a1cf0-8f2c-41f6-8837-deafaabeedf3",
-      "name": "Loop Over Bookings",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
+      "id": "c89b6066-7a57-4d25-8f09-c2c3dda151cf",
+      "name": "Determine Follow-Up Stage",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
-        448,
-        496
+        -752,
+        656
       ]
     },
     {
@@ -98,13 +87,13 @@
         },
         "options": {}
       },
-      "id": "d0bbb717-2485-4374-b0cd-6b816ae2f6bf",
+      "id": "a0700fcc-07cf-4c95-9494-1648b9fa0ae2",
       "name": "Action Required?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        672,
-        224
+        -288,
+        192
       ]
     },
     {
@@ -181,13 +170,37 @@
         },
         "options": {}
       },
-      "id": "c1f265a9-7ea4-409e-bcc0-7bc467bf1b09",
+      "id": "64b033ba-2d4e-4f72-8be2-b9be6263bf9a",
       "name": "Route by Stage",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        896,
-        192
+        -64,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4144b503-481f-4652-9a03-76be93cd8ffc",
+      "name": "Loop Over Bookings",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -512,
+        464
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7c90483d-fa59-4a27-b069-2f5de3fc203f",
+      "name": "No Action — Skip Booking",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -32
       ]
     },
     {
@@ -200,18 +213,18 @@
           "appendAttribution": false
         }
       },
-      "id": "29c16420-ef8e-4f61-a2b6-ce2ca83839f3",
+      "id": "a74837a4-56ca-4ffe-b82f-65618bb5f917",
       "name": "Send Follow-Up 1 — Check-In",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        1120,
-        16
+        160,
+        -16
       ],
-      "webhookId": "3cc2b176-f340-42ed-ab41-6f9db359a600",
+      "webhookId": "a60bda0a-eb76-494b-a5e5-d783fae02229",
       "credentials": {
         "gmailOAuth2": {
-          "id": "FgV58Ortd5KrEDCJ",
+          "id": "32vwad2Uf9i23CQK",
           "name": "Gmail account"
         }
       }
@@ -273,17 +286,17 @@
         },
         "options": {}
       },
-      "id": "ed9ceaee-49c4-4efa-b0e7-ae292b822311",
+      "id": "d6889611-9d89-4df0-a2a2-0b280b30b586",
       "name": "Mark Follow-Up 1 Sent",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1344,
-        448
+        384,
+        416
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Bf9OOM7PnwbZsnOq",
+          "id": "IpJCXuOk2tsquBze",
           "name": "Google Sheets account"
         }
       }
@@ -298,18 +311,18 @@
           "appendAttribution": false
         }
       },
-      "id": "2083a477-8eaa-45d2-8d33-a12b8a7d54bf",
+      "id": "0393904b-ad96-48a6-ab72-ab4391de5c38",
       "name": "Send Follow-Up 2 — Helpful Tips",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        1120,
-        208
+        160,
+        176
       ],
-      "webhookId": "0aaecd05-636b-43f9-bf0c-0547c9dbdbd5",
+      "webhookId": "93d4d598-b85b-4e73-b0ad-a88d1c3c9039",
       "credentials": {
         "gmailOAuth2": {
-          "id": "FgV58Ortd5KrEDCJ",
+          "id": "32vwad2Uf9i23CQK",
           "name": "Gmail account"
         }
       }
@@ -371,17 +384,17 @@
         },
         "options": {}
       },
-      "id": "8dd5b6e6-29d9-48a5-a5a2-ab959e50326e",
+      "id": "7c2c5c57-4c8b-44b0-837c-5789c532bf6e",
       "name": "Mark Follow-Up 2 Sent",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1344,
-        640
+        384,
+        608
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Bf9OOM7PnwbZsnOq",
+          "id": "IpJCXuOk2tsquBze",
           "name": "Google Sheets account"
         }
       }
@@ -396,18 +409,18 @@
           "appendAttribution": false
         }
       },
-      "id": "20604e8d-4df4-4c18-a1bd-a8eecf30b022",
+      "id": "6f64b661-13f4-454f-9674-8789daf79739",
       "name": "Send Post-Service Follow-Up — Feedback",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        1120,
-        400
+        160,
+        368
       ],
-      "webhookId": "10d9de3e-e4c3-4de7-8ce8-eeb3238849d0",
+      "webhookId": "01200ad6-aaea-4c30-b65f-dfb5e3ef6346",
       "credentials": {
         "gmailOAuth2": {
-          "id": "FgV58Ortd5KrEDCJ",
+          "id": "32vwad2Uf9i23CQK",
           "name": "Gmail account"
         }
       }
@@ -469,17 +482,17 @@
         },
         "options": {}
       },
-      "id": "1ae981e3-2992-4894-8a9e-33da833b6fba",
+      "id": "a4f9c112-456c-4321-8f5a-37151cb0182c",
       "name": "Mark Post-Service Sent",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1344,
-        832
+        384,
+        800
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "Bf9OOM7PnwbZsnOq",
+          "id": "IpJCXuOk2tsquBze",
           "name": "Google Sheets account"
         }
       }
@@ -501,36 +514,18 @@
       "main": [
         [
           {
-            "node": "Loop Over Bookings",
+            "node": "Determine Follow-Up Stage",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "No Action — Skip Booking": {
+    "Determine Follow-Up Stage": {
       "main": [
         [
           {
             "node": "Loop Over Bookings",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Bookings": {
-      "main": [
-        [
-          {
-            "node": "No Action — Skip Booking",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Action Required?",
             "type": "main",
             "index": 0
           }
@@ -574,6 +569,29 @@
         [
           {
             "node": "Send Post-Service Follow-Up — Feedback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Bookings": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Action Required?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Action — Skip Booking": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Bookings",
             "type": "main",
             "index": 0
           }
@@ -650,34 +668,34 @@
   "pinData": {},
   "nodeGroups": [
     {
-      "id": "db4633c9-0d90-464a-b38c-4cbf04df0abd",
+      "id": "06b7548d-ffcd-4258-92d5-8458184b6a16",
       "name": "Stage 1 — Day-After-Booking Check-In",
       "nodeIds": [
-        "29c16420-ef8e-4f61-a2b6-ce2ca83839f3",
-        "ed9ceaee-49c4-4efa-b0e7-ae292b822311"
+        "a74837a4-56ca-4ffe-b82f-65618bb5f917",
+        "d6889611-9d89-4df0-a2a2-0b280b30b586"
       ],
       "description": "Sends a warm check-in email the day after the booking was made and records it in the sheet."
     },
     {
-      "id": "7f76d32e-6e5f-4a3e-a902-988f4ae7ff82",
+      "id": "0f630187-3366-4a37-979f-d691d101b1d4",
       "name": "Stage 2 — Second Follow-Up",
       "nodeIds": [
-        "2083a477-8eaa-45d2-8d33-a12b8a7d54bf",
-        "8dd5b6e6-29d9-48a5-a5a2-ab959e50326e"
+        "0393904b-ad96-48a6-ab72-ab4391de5c38",
+        "7c2c5c57-4c8b-44b0-837c-5789c532bf6e"
       ],
       "description": "Sends helpful pre-appointment tips 2 days after Follow-Up 1 and updates the status."
     },
     {
-      "id": "2c35714a-01d7-46d4-ba4e-c7cef9ae0510",
+      "id": "cc1526cb-2a8f-4387-9afb-db68917ebbc4",
       "name": "Stage 3 — Post-Service Feedback",
       "nodeIds": [
-        "20604e8d-4df4-4c18-a1bd-a8eecf30b022",
-        "1ae981e3-2992-4894-8a9e-33da833b6fba"
+        "6f64b661-13f4-454f-9674-8789daf79739",
+        "a4f9c112-456c-4321-8f5a-37151cb0182c"
       ],
       "description": "After the appointment date passes, asks for feedback and sets status to Awaiting Feedback."
     }
   ],
   "meta": {
-    "instanceId": "61d4b402587ea0a8e4e00ab9ed2eed997f4bbab8707dfdcaf438932bd6c82ee7"
+    "instanceId": "80edeee8f2d8bfb96da82bd4496443dd1c6219afc61ef2ce6d22d9ad19bc739d"
   }
 }
