@@ -368,7 +368,7 @@
         832,
         272
       ],
-      "webhookId": "5c96f47d-2dbf-4156-a4c2-1562287581fe",
+      "webhookId": "cb4e186c-e5de-44c5-b1f1-c30f0da68e89",
       "credentials": {
         "gmailOAuth2": {
           "id": "32vwad2Uf9i23CQK",
@@ -398,6 +398,149 @@
         912,
         64
       ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "982a2b94-f6c0-4296-9f11-606dda545c35",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        -176
+      ],
+      "webhookId": "dc512957-5e24-4842-95f2-0caa314dc218",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "RsEn7cmJDvd9KQDp",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "from-wa",
+              "leftValue": "={{ $('WhatsApp Trigger').isExecuted }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e6ac11b9-33c7-4a62-b887-8643a8675112",
+      "name": "Came From WhatsApp?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        768,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "1387567034443215",
+        "recipientPhoneNumber": "=+237654099666",
+        "textBody": "=Hello",
+        "additionalFields": {}
+      },
+      "id": "37c1779b-13da-4274-9199-710a8430209e",
+      "name": "Send WhatsApp Reply",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        1632,
+        -96
+      ],
+      "webhookId": "fab43b57-ff09-4fa0-8596-fdf96648e4cf",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YxasZsfz33D8W02b",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "has-text",
+              "leftValue": "={{ $json.messages?.[0]?.text?.body }}",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "843312b7-0b01-4c47-8a40-b92c201a26ce",
+      "name": "Only Text Messages",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -464,
+        -48
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "chat-input",
+              "name": "chatInput",
+              "value": "={{ $json.messages[0].text.body }}",
+              "type": "string"
+            },
+            {
+              "id": "session-id",
+              "name": "sessionId",
+              "value": "={{ $json.messages[0].from }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6e849c32-89bc-48fd-854c-96e3b5dccb89",
+      "name": "Prepare WhatsApp Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -240,
+        240
+      ]
     }
   ],
   "connections": {
@@ -414,7 +557,13 @@
     },
     "AI Agent — Salon Booking Assistant": {
       "main": [
-        [],
+        [
+          {
+            "node": "Came From WhatsApp?",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Friendly Error Message",
@@ -511,10 +660,74 @@
           }
         ]
       ]
+    },
+    "Friendly Error Message": {
+      "main": [
+        [
+          {
+            "node": "Came From WhatsApp?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Only Text Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Came From WhatsApp?": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Only Text Messages": {
+      "main": [
+        [
+          {
+            "node": "Prepare WhatsApp Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare WhatsApp Input": {
+      "main": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "pinData": {},
   "nodeGroups": [
+    {
+      "id": "de81bfdf-a7f0-4298-ad84-123533eed55c",
+      "name": "WhatsApp Intake",
+      "nodeIds": [
+        "843312b7-0b01-4c47-8a40-b92c201a26ce",
+        "6e849c32-89bc-48fd-854c-96e3b5dccb89"
+      ],
+      "description": "Receives incoming WhatsApp messages, drops delivery status updates, and passes the sender text and number to the agent."
+    },
     {
       "id": "6d88530b-b4ea-46f0-b547-be4548e58a97",
       "name": "Booking Assistant",
