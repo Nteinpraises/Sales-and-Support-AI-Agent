@@ -181,30 +181,6 @@
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "id": "4144b503-481f-4652-9a03-76be93cd8ffc",
-      "name": "Loop Over Bookings",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        -512,
-        464
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "7c90483d-fa59-4a27-b069-2f5de3fc203f",
-      "name": "No Action — Skip Booking",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        -64,
-        -32
-      ]
-    },
-    {
-      "parameters": {
         "sendTo": "={{ $json.Email }}",
         "subject": "={{ $json[\"Full Name\"].split(\" \")[0] }}, your Eterna Beauty appointment is coming up",
         "emailType": "text",
@@ -300,6 +276,19 @@
           "name": "Google Sheets account"
         }
       }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4144b503-481f-4652-9a03-76be93cd8ffc",
+      "name": "Loop Over Bookings",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -512,
+        464
+      ]
     },
     {
       "parameters": {
@@ -496,6 +485,17 @@
           "name": "Google Sheets account"
         }
       }
+    },
+    {
+      "parameters": {},
+      "id": "7c90483d-fa59-4a27-b069-2f5de3fc203f",
+      "name": "No Action — Skip Booking",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -32
+      ]
     }
   ],
   "connections": {
@@ -575,29 +575,6 @@
         ]
       ]
     },
-    "Loop Over Bookings": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Action Required?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "No Action — Skip Booking": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Bookings",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Send Follow-Up 1 — Check-In": {
       "main": [
         [
@@ -614,6 +591,18 @@
         [
           {
             "node": "Loop Over Bookings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Bookings": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Action Required?",
             "type": "main",
             "index": 0
           }
@@ -654,6 +643,17 @@
       ]
     },
     "Mark Post-Service Sent": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Bookings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Action — Skip Booking": {
       "main": [
         [
           {
