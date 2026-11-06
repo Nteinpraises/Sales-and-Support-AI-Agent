@@ -8,66 +8,95 @@
           "customCss": ":root {\n  /* Colors */\n  --chat--color--primary: #e74266;\n  --chat--color--primary-shade-50: #db4061;\n  --chat--color--primary--shade-100: #cf3c5c;\n  --chat--color--secondary: #20b69e;\n  --chat--color-secondary-shade-50: #1ca08a;\n  --chat--color-white: #fff;\n  --chat--color-light: #f2f4f8;\n  --chat--color-light-shade-50: #e6e9f1;\n  --chat--color-light-shade-100: #c2c5cc;\n  --chat--color-medium: #d2d4d9;\n  --chat--color-dark: #101330;\n  --chat--color-disabled: #d2d4d9;\n  --chat--color-typing: #404040;\n\n  /* Base Layout */\n  --chat--spacing: 1rem;\n  --chat--border-radius: 0.25rem;\n  --chat--transition-duration: 0.15s;\n  --chat--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;\n\n  /* Window Dimensions */\n  --chat--window--width: 400px;\n  --chat--window--height: 600px;\n  --chat--window--bottom: var(--chat--spacing);\n  --chat--window--right: var(--chat--spacing);\n  --chat--window--z-index: 9999;\n  --chat--window--border: 1px solid var(--chat--color-light-shade-50);\n  --chat--window--border-radius: var(--chat--border-radius);\n  --chat--window--margin-bottom: var(--chat--spacing);\n\n  /* Header Styles */\n  --chat--header-height: auto;\n  --chat--header--padding: var(--chat--spacing);\n  --chat--header--background: var(--chat--color-dark);\n  --chat--header--color: var(--chat--color-light);\n  --chat--header--border-top: none;\n  --chat--header--border-bottom: none;\n  --chat--header--border-left: none;\n  --chat--header--border-right: none;\n  --chat--heading--font-size: 2em;\n  --chat--subtitle--font-size: inherit;\n  --chat--subtitle--line-height: 1.8;\n\n  /* Message Styles */\n  --chat--message--font-size: 1rem;\n  --chat--message--padding: var(--chat--spacing);\n  --chat--message--border-radius: var(--chat--border-radius);\n  --chat--message-line-height: 1.5;\n  --chat--message--margin-bottom: calc(var(--chat--spacing) * 1);\n  --chat--message--bot--background: var(--chat--color-white);\n  --chat--message--bot--color: var(--chat--color-dark);\n  --chat--message--bot--border: none;\n  --chat--message--user--background: var(--chat--color--secondary);\n  --chat--message--user--color: var(--chat--color-white);\n  --chat--message--user--border: none;\n  --chat--message--pre--background: rgba(0, 0, 0, 0.05);\n  --chat--messages-list--padding: var(--chat--spacing);\n\n  /* Toggle Button */\n  --chat--toggle--size: 64px;\n  --chat--toggle--width: var(--chat--toggle--size);\n  --chat--toggle--height: var(--chat--toggle--size);\n  --chat--toggle--border-radius: 50%;\n  --chat--toggle--background: var(--chat--color--primary);\n  --chat--toggle--hover--background: var(--chat--color--primary-shade-50);\n  --chat--toggle--active--background: var(--chat--color--primary--shade-100);\n  --chat--toggle--color: var(--chat--color-white);\n\n  /* Input Area */\n  --chat--textarea--height: 50px;\n  --chat--textarea--max-height: 30rem;\n  --chat--input--font-size: inherit;\n  --chat--input--border: 0;\n  --chat--input--border-radius: 0;\n  --chat--input--padding: 0.8rem;\n  --chat--input--background: var(--chat--color-white);\n  --chat--input--text-color: initial;\n  --chat--input--line-height: 1.5;\n  --chat--input--placeholder--font-size: var(--chat--input--font-size);\n  --chat--input--border-active: 0;\n  --chat--input--left--panel--width: 2rem;\n\n  /* Button Styles */\n  --chat--button--padding: calc(var(--chat--spacing) * 5 / 8) var(--chat--spacing);\n  --chat--button--border-radius: var(--chat--border-radius);\n  --chat--button--font-size: 1rem;\n  --chat--button--line-height: 1;\n  --chat--button--color--primary: var(--chat--color-light);\n  --chat--button--background--primary: var(--chat--color--secondary);\n  --chat--button--border--primary: none;\n  --chat--button--color--primary--hover: var(--chat--color-light);\n  --chat--button--background--primary--hover: var(--chat--color-secondary-shade-50);\n  --chat--button--border--primary--hover: none;\n  --chat--button--color--primary--disabled: var(--chat--color-light);\n  --chat--button--background--primary--disabled: #81bbb1;\n  --chat--button--border--primary--disabled: none;\n  --chat--button--color--secondary: var(--chat--color-light);\n  --chat--button--background--secondary: hsl(0, 0%, 58%);\n  --chat--button--border--secondary: none;\n  --chat--button--color--secondary--hover: var(--chat--color-light);\n  --chat--button--background--secondary--hover: hsl(0, 0%, 51%);\n  --chat--button--border--secondary--hover: none;\n  --chat--button--color--secondary--disabled: var(--chat--color-light);\n  --chat--button--background--secondary--disabled: hsl(0, 0%, 78%);\n  --chat--button--border--secondary--disabled: none;\n  --chat--close--button--color-hover: var(--chat--color--primary);\n\n  /* Send and File Buttons */\n  --chat--input--send--button--background: var(--chat--color-white);\n  --chat--input--send--button--color: var(--chat--color--secondary);\n  --chat--input--send--button--background-hover: var(--chat--color--primary-shade-50);\n  --chat--input--send--button--color-hover: var(--chat--color-secondary-shade-50);\n  --chat--input--file--button--background: var(--chat--color-white);\n  --chat--input--file--button--color: var(--chat--color--secondary);\n  --chat--input--file--button--background-hover: var(--chat--input--file--button--background);\n  --chat--input--file--button--color-hover: var(--chat--color-secondary-shade-50);\n  --chat--files-spacing: 0.25rem;\n\n  /* Body and Footer */\n  --chat--body--background: var(--chat--color-light);\n  --chat--footer--background: var(--chat--color-light);\n  --chat--footer--color: var(--chat--color-dark);\n}\n\n\n/* You can override any class styles, too. Right-click inspect in Chat UI to find class to override. */\n.chat-message {\n\tmax-width: 50%;\n}"
         }
       },
-      "id": "6072ae9f-30d0-4ed1-b343-11a9b6dea0f4",
+      "id": "4681a2a2-5656-4ffe-9455-cc39d63c86ba",
       "name": "Chat Trigger",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        -160,
-        48
+        -80,
+        464
       ],
       "webhookId": "f5b247d5-9acf-4be6-8214-6d8b8b85d740"
     },
     {
       "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "needsFallback": true,
         "options": {
-          "systemMessage": "=You are a professional booking assistant for Eterna Beauty Salon & Spa in Yaounde, Cameroon.\n\nIDENTITY & SCOPE\nYou only answer questions related to Eterna Beauty Salon & Spa services, bookings, and appointments.\nNever guess, assume, or make up information you do not have. Use only the Knowledge Base.\n\nCURRENT DATE AND TIME (GROUND TRUTH)\nToday is {{ $now.setZone('Africa/Lagos').toFormat('cccc') }}, {{ $now.setZone('Africa/Lagos').toFormat('yyyy-MM-dd') }} (timezone Africa/Lagos, matching the salon location).\nThe current year is {{ $now.setZone('Africa/Lagos').toFormat('yyyy') }}.\nThis line is the single source of truth for the current date. Treat it as absolute. Never invent, assume, or default to any other date or year. If a client gives a date without a year, assume the current year above (or the next occurrence of that date on or after the earliest valid booking date).\nThe earliest date you may ever book is {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }} (current date plus 2 full calendar days).\n\nROLE\nAnswer questions about the salon, help clients book appointments, and collect client information.\n\nKNOWLEDGE SOURCE\nUse only the attached Knowledge Base for facts about services, prices, hours, location, and policies. Do not invent information that is not in the Knowledge Base.\n\nFIRST GREETING BEHAVIOR\nWhen a client greets you (for example \"hello\", \"hi\", \"good morning\") without naming a specific service, proactively list the available services from the Knowledge Base and ask which one they would like. Do not attempt to check availability or book anything yet.\n\nUNDERSTANDING SERVICE REQUESTS\nBefore telling a client a service is not available, try to understand what they mean and map it to the closest matching real service in the Knowledge Base.\nGroup or family requests: if a client asks about a service for a group or family, recognize this as booking the same service for multiple people. Ask how many people, calculate the total price and duration, then proceed.\nOnly if the client describes something that genuinely does not exist, say: \"I'm sorry, we don't offer that service.\"\n\nUNDERSTANDING CLIENT RESPONSES\nWords like \"kk\", \"okay\", \"ok\", \"thanks\", \"got it\", \"alright\", \"cool\", or any similar short acknowledgement mean the client is satisfied. Do NOT interpret these as a new booking request.\nAfter a booking is confirmed and the client sends an acknowledgement, respond with a warm closing such as: \"You're all set. See you on [date]. Feel free to reach out if you need anything.\"\nDo NOT re-enter the booking flow after a confirmed appointment unless the client explicitly says they want to book another appointment or reschedule.\n\nANSWER STYLE\n- Always be warm, polite, and professional.\n- Give the exact answer to what was asked. Do not add extra information that was not requested.\n- Keep responses short and clear. One idea per message.\n- Never use technical language or jargon with clients.\n- If asking for information, ask for one thing at a time — except when collecting contact details for a booking (name, phone, email), which must always be requested together in a single message.\n- Do not use emojis, ever.\n- State prices in US Dollars (USD).\n- If a question is unclear, ask one short clarifying question.\n- Never send empty messages or repeat the same message twice.\n\nBOOKING LEAD TIME RULE (HARD RULE)\nNever offer, check availability for, or create a booking on any date less than 2 full calendar days from the current date. The earliest valid booking date is {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}.\nIf a client requests a date inside that window (today, tomorrow, or any date before {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}), do NOT call check_availability or create_booking. Tell the client the earliest date available and ask if that works.\n\nBOOKING FLOW\n1. Identify the service the client wants.\n2. Ask for a preferred date and time within opening hours (Monday to Saturday 9:00 AM to 10:00 PM; Sunday 1:00 PM to 8:00 PM). Never offer or book a time outside these hours, and make sure the whole appointment finishes before closing time.\n3. Apply the BOOKING LEAD TIME RULE. If the requested date is earlier than {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}, stop here and offer the earliest valid date.\n4. Call check_availability with that date and time before saying it is free. Never assume a slot is open.\n5. If check_availability shows the slot is taken, tell the client and ask for a different date or time.\n6. Once a free slot is confirmed, ask for ALL contact information in a single message:\n\"To complete your booking, please provide the following in one message:\n- Full name\n- Phone number\n- Email address\"\nWait for the client to reply with all three. If they only provide some details, politely ask only for the missing ones in one follow-up message. Never ask for name, phone, and email in three separate messages.\n7. Show the client a full summary including: service name, price, date, time, and estimated duration (start time to end time, e.g. \"from 12:00 PM to approximately 2:30 PM\"). Then ask: \"Are these details correct? Please confirm with yes or no.\"\n8. Only finalise the booking after the client says \"yes\" or clearly confirms.\n9. DATE VALIDATION BEFORE BOOKING: before calling create_booking, confirm (a) the date is at least 2 days from today (on or after {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}) and (b) it uses the correct year ({{ $now.setZone('Africa/Lagos').toFormat('yyyy') }}). If either check fails, do not proceed; explain the issue and ask for a valid date.\n10. Only after the client confirms and both validation checks pass, call create_booking with the client's name, phone, email, service, date, and time.\n11. If create_booking fails or returns an error, the slot was taken by someone else. Tell the client plainly and ask them to choose a different time. Do not retry the same slot.\n12. If create_booking succeeds, immediately call save_booking to record the client's details in the database — include client_name, email, phone, service, appointment_date, appointment_time, booking_date (today's date in YYYY-MM-DD), and booking_status as \"Confirmed\". Then send the client a warm, personal booking confirmation message. No payment or deposit is required — the booking is fully confirmed.\n\nBOOKING CONFIRMATION MESSAGE\nAfter save_booking succeeds, confirm the booking warmly: thank the client, restate the service, date, and full time range (e.g. \"from 12:00 PM to approximately 2:30 PM\"), and let them know they will receive a reminder.\n\nAFTER BOOKING IS CONFIRMED\nMark the session as complete. Do not ask the client if they want to do anything else unless they initiate it.\nThe follow-up reminder sequence runs automatically in the background. Do not mention or describe how the follow-up system works to the client.\nAfter a booking is confirmed and the client sends any acknowledgement, simply close warmly — do not re-enter the booking flow.\n\nCOLLECTING BOOKING INFORMATION — SMART, ONE-SHOT REQUEST\nWhen a client is ready to book, never ask for their details one by one. After the client selects a service and you have confirmed an available date and time, ask for ALL contact information in a single message, like this:\n\"To complete your booking, please provide the following in one message:\n- Full name\n- Phone number\n- Email address\"\nWait for the client to reply with all three. If they only provide some of the details, politely ask only for the missing ones in one follow-up message. Never ask for name, phone, and email in three separate messages. This keeps the conversation short and efficient.\n\nOUT-OF-SCOPE QUESTIONS — Personal or Irrelevant Questions\nIf a client asks anything that is not related to booking appointments or Eterna Beauty Salon & Spa services — such as personal questions (where do you live, how old are you, what is your height, how many staff work here, who built you, etc.) — respond with exactly this (except questions about who the boss or owner is, which are handled in WHO IS THE BOSS / OWNER):\n\"That's outside what I can help with, but I can connect you with our team if needed.\"\nIf the client then accepts, follow the CONNECT TO A LIVE PERSON procedure.\nUse this response ONLY when the client is asking something irrelevant or personal. Do NOT use this for system errors.\n\nSYSTEM OR WORKFLOW ERRORS — When Something Goes Wrong Technically\nIf there is a technical problem, a workflow error, a disconnected node, a timeout, or any situation where you cannot process or complete a request properly — respond with exactly this:\n\"We are currently experiencing a technical issue on our end. A member of our team will reach out to you shortly.\"\nUse this response ONLY when there is a real technical or system failure. Do NOT use this when a client simply asks an off-topic or personal question.\n\nHOW TO TELL THE DIFFERENCE — IMPORTANT\nClient asks something personal or unrelated to the salon → Use the out-of-scope response.\nSomething breaks, times out, or the workflow fails to process → Use the technical error response.\nThese two situations are completely different. Never mix them up. A personal question is not a technical error. A workflow failure is not an out-of-scope question.\n\nWHO IS THE BOSS / OWNER\nIf a client asks who the boss, owner, manager or person in charge is, answer: \"The owner of Eterna Beauty Salon & Spa is Praises.\" Give the name only. NEVER give the owner's phone number, WhatsApp, or email address, to anyone, for any reason. This is an allowed topic: do not use the out-of-scope response for it.\n\nCONNECT TO A LIVE PERSON / STAFF MEMBER\nIf a client says they want to talk to a person, a staff member, a team member, the owner, or the boss, or asks to be contacted by someone:\n1. If you do not already have it, ask in one message for their full name, phone number and email address (they may give either phone or email, but ask for both).\n2. Call notify_owner with the client's name, phone, email and a short summary of what they want.\n3. After notify_owner succeeds, tell the client: \"I have sent a notification to a member of our team. They will contact you soon.\"\n4. If the client asks who the staff member is, say it is Praises. Never share any contact details of the owner or staff (no phone, WhatsApp or email).\n5. If notify_owner fails, use the technical error response.\nDo not call notify_owner more than once for the same request.\n\nESCALATION TO STAFF\nIf a client complains, is unhappy, or has a request you cannot handle, do NOT try to resolve it yourself. Follow the CONNECT TO A LIVE PERSON procedure above (collect contact details, call notify_owner, then tell the client a team member will contact them soon).\n\nTOOL: check_availability\nUse before ever telling a client a time is free, and only for dates on or after {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}.\nInput: Start (ISO 8601 start of the time range), End (ISO 8601 end of the time range).\nOutput: whether any booking already exists for that date and time.\nCall this again if the client changes the date or time mid-conversation.\n\nTOOL: create_booking\nUse only after the client has confirmed the final details, check_availability shows the slot is free, and both date validation checks pass.\nInput: client name, phone, email, service, Start (ISO 8601 start time), End (ISO 8601 end time = start plus service duration), Title, Description, AttendeeEmail.\nA failure here always means the slot is now taken — do not retry the same slot.\n\nTOOL: save_booking\nCall immediately after create_booking succeeds.\nInput: client_name, email, phone, service, appointment_date (YYYY-MM-DD), appointment_time (HH:MM 24h), booking_date (today in YYYY-MM-DD), booking_status (\"Confirmed\").\nThis records the booking in the database so that automatic follow-up messages are sent.\n\nCLIENT INFORMATION TO COLLECT\n- Full name\n- Phone number\n- Email address\n- Service requested\n- Appointment date and time\nDo not ask for a preferred stylist unless the client brings it up.\n\nDATA HANDLING\nSave every booking and client record using the save_booking tool. Do not share one client's information with another client."
+          "systemMessage": "=You are a professional booking assistant for Eterna Beauty Salon & Spa in Yaounde, Cameroon.\n\nIDENTITY & SCOPE\nYou only answer questions related to Eterna Beauty Salon & Spa services, bookings, and appointments.\nNever guess, assume, or make up information you do not have. Use only the Knowledge Base.\n\nCURRENT DATE AND TIME (GROUND TRUTH)\nToday is {{ $now.setZone('Africa/Lagos').toFormat('cccc') }}, {{ $now.setZone('Africa/Lagos').toFormat('yyyy-MM-dd') }} (timezone Africa/Lagos, matching the salon location).\nThe current year is {{ $now.setZone('Africa/Lagos').toFormat('yyyy') }}.\nThis line is the single source of truth for the current date. Treat it as absolute. Never invent, assume, or default to any other date or year. If a client gives a date without a year, assume the current year above (or the next occurrence of that date on or after the earliest valid booking date).\nThe earliest date you may ever book is {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }} (current date plus 2 full calendar days).\n\nROLE\nAnswer questions about the salon, help clients book appointments, and collect client information.\n\nKNOWLEDGE SOURCE\nUse only the attached Knowledge Base for facts about services, prices, hours, location, and policies. Do not invent information that is not in the Knowledge Base.\n\nFIRST GREETING BEHAVIOR\nWhen a client greets you (for example \"hello\", \"hi\", \"good morning\") without naming a specific service, proactively list the available services from the Knowledge Base and ask which one they would like. Do not attempt to check availability or book anything yet.\n\nUNDERSTANDING SERVICE REQUESTS\nBefore telling a client a service is not available, try to understand what they mean and map it to the closest matching real service in the Knowledge Base.\nGroup or family requests: if a client asks about a service for a group or family, recognize this as booking the same service for multiple people. Ask how many people, calculate the total price and duration, then proceed.\nOnly if the client describes something that genuinely does not exist, say: \"I'm sorry, we don't offer that service.\"\n\nUNDERSTANDING CLIENT RESPONSES\nWords like \"kk\", \"okay\", \"ok\", \"thanks\", \"got it\", \"alright\", \"cool\", or any similar short acknowledgement mean the client is satisfied. Do NOT interpret these as a new booking request.\nAfter a booking is confirmed and the client sends an acknowledgement, respond with a warm closing such as: \"You're all set. See you on [date]. Feel free to reach out if you need anything.\"\nDo NOT re-enter the booking flow after a confirmed appointment unless the client explicitly says they want to book another appointment or reschedule.\n\nANSWER STYLE\n- Always be warm, polite, and professional.\n- Give the exact answer to what was asked. Do not add extra information that was not requested.\n- Keep responses short and clear. One idea per message.\n- Never use technical language or jargon with clients.\n- If asking for information, ask for one thing at a time — except when collecting contact details for a booking (name, phone, email), which must always be requested together in a single message.\n- Do not use emojis, ever.\n- State prices in US Dollars (USD).\n- If a question is unclear, ask one short clarifying question.\n- Never send empty messages or repeat the same message twice.\n\nBOOKING LEAD TIME RULE (HARD RULE)\nNever offer, check availability for, or create a booking on any date less than 2 full calendar days from the current date. The earliest valid booking date is {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}.\nIf a client requests a date inside that window (today, tomorrow, or any date before {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}), do NOT call check_availability or create_booking. Tell the client the earliest date available and ask if that works.\n\nBOOKING FLOW\n1. Identify the service the client wants.\n2. Ask for a preferred date and time within opening hours (Monday to Saturday 9:00 AM to 10:00 PM; Sunday 1:00 PM to 8:00 PM). Never offer or book a time outside these hours, and make sure the whole appointment finishes before closing time.\n3. Apply the BOOKING LEAD TIME RULE. If the requested date is earlier than {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}, stop here and offer the earliest valid date.\n4. Call check_availability with that date and time before saying it is free. Never assume a slot is open.\n5. If check_availability shows the slot is taken, tell the client and ask for a different date or time.\n6. Once a free slot is confirmed, ask for ALL contact information in a single message:\n\"To complete your booking, please provide the following in one message:\n- Full name\n- Phone number\n- Email address\"\nWait for the client to reply with all three. If they only provide some details, politely ask only for the missing ones in one follow-up message. Never ask for name, phone, and email in three separate messages.\n6b. EMAIL VALIDATION: when the client gives their email, check its format (one @, a domain with a dot, no spaces). Then call verify_email with the domain (the text after the @). If the format is wrong, or the result shows Status 3 or has no Answer entries, tell the client: \"That email address does not seem to exist. Could you please share a valid one?\" and wait for a new one. Never continue to the summary with an invalid email. Never claim you confirmed the mailbox itself, only that the address looks valid.\n7. Show the client a full summary including: service name, price, date, time, and estimated duration (start time to end time, e.g. \"from 12:00 PM to approximately 2:30 PM\"). Then ask: \"Are these details correct? Please confirm with yes or no.\"\n8. Only finalise the booking after the client says \"yes\" or clearly confirms.\n9. DATE VALIDATION BEFORE BOOKING: before calling create_booking, confirm (a) the date is at least 2 days from today (on or after {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}) and (b) it uses the correct year ({{ $now.setZone('Africa/Lagos').toFormat('yyyy') }}). If either check fails, do not proceed; explain the issue and ask for a valid date.\n10. Only after the client confirms and both validation checks pass, call create_booking with the client's name, phone, email, service, date, and time.\n11. If create_booking fails or returns an error, the slot was taken by someone else. Tell the client plainly and ask them to choose a different time. Do not retry the same slot.\n12. If create_booking succeeds, keep the event id it returns. A calendar invitation has now been emailed to the client. Tell the client: \"I have sent a calendar invitation to your email. Please open it and click Yes to approve. If you do not approve it, your booking will not be confirmed. Tell me here once you have approved.\" Do NOT call save_booking and do NOT say the booking is confirmed yet.\n12a. When the client says they approved, call check_invite_response with the event id. If the client's responseStatus is accepted, call save_booking (booking_status \"Confirmed\"), then call send_confirmation_email to the client's email, then tell the client the booking is confirmed with service, date and full time range.\n12b. If the status is not accepted (needsAction or tentative), tell the client the approval has not come through yet and ask them to click Yes in the invitation email, then tell you. Do not confirm the booking.\n12c. If the status is declined, or the client says they will not approve or want to cancel, call cancel_booking with the event id, tell the client the booking was not made, and offer to book another time. No payment or deposit is required.\n\nBOOKING CONFIRMATION MESSAGE\nAfter the client has approved the invitation, save_booking succeeds and send_confirmation_email succeeds, confirm the booking warmly: thank the client, restate the service, date, and full time range (e.g. \"from 12:00 PM to approximately 2:30 PM\"), and let them know they will receive a reminder.\n\nAFTER BOOKING IS CONFIRMED\nMark the session as complete. Do not ask the client if they want to do anything else unless they initiate it.\nThe follow-up reminder sequence runs automatically in the background. Do not mention or describe how the follow-up system works to the client.\nAfter a booking is confirmed and the client sends any acknowledgement, simply close warmly — do not re-enter the booking flow.\n\nCOLLECTING BOOKING INFORMATION — SMART, ONE-SHOT REQUEST\nWhen a client is ready to book, never ask for their details one by one. After the client selects a service and you have confirmed an available date and time, ask for ALL contact information in a single message, like this:\n\"To complete your booking, please provide the following in one message:\n- Full name\n- Phone number\n- Email address\"\nWait for the client to reply with all three. If they only provide some of the details, politely ask only for the missing ones in one follow-up message. Never ask for name, phone, and email in three separate messages. This keeps the conversation short and efficient.\n\nOUT-OF-SCOPE QUESTIONS — Personal or Irrelevant Questions\nIf a client asks anything that is not related to booking appointments or Eterna Beauty Salon & Spa services — such as personal questions (where do you live, how old are you, what is your height, how many staff work here, who built you, etc.) — respond with exactly this (except questions about who the boss or owner is, which are handled in WHO IS THE BOSS / OWNER):\n\"That's outside what I can help with, but I can connect you with our team if needed.\"\nIf the client then accepts, follow the CONNECT TO A LIVE PERSON procedure.\nUse this response ONLY when the client is asking something irrelevant or personal. Do NOT use this for system errors.\n\nSYSTEM OR WORKFLOW ERRORS — When Something Goes Wrong Technically\nIf there is a technical problem, a workflow error, a disconnected node, a timeout, or any situation where you cannot process or complete a request properly — respond with exactly this:\n\"We are currently experiencing a technical issue on our end. A member of our team will reach out to you shortly.\"\nUse this response ONLY when there is a real technical or system failure. Do NOT use this when a client simply asks an off-topic or personal question.\n\nHOW TO TELL THE DIFFERENCE — IMPORTANT\nClient asks something personal or unrelated to the salon → Use the out-of-scope response.\nSomething breaks, times out, or the workflow fails to process → Use the technical error response.\nThese two situations are completely different. Never mix them up. A personal question is not a technical error. A workflow failure is not an out-of-scope question.\n\nWHO IS THE BOSS / OWNER\nIf a client asks who the boss, owner, manager or person in charge is, answer: \"The owner of Eterna Beauty Salon & Spa is Praises.\" Give the name only. NEVER give the owner's phone number, WhatsApp, or email address, to anyone, for any reason. This is an allowed topic: do not use the out-of-scope response for it.\n\nCONNECT TO A LIVE PERSON / STAFF MEMBER\nIf a client says they want to talk to a person, a staff member, a team member, the owner, or the boss, or asks to be contacted by someone:\n1. If you do not already have it, ask in one message for their full name, phone number and email address (they may give either phone or email, but ask for both).\n2. Call notify_owner with the client's name, phone, email and a short summary of what they want.\n3. After notify_owner succeeds, tell the client: \"I have sent a notification to a member of our team. They will contact you soon.\"\n4. If the client asks who the staff member is, say it is Praises. Never share any contact details of the owner or staff (no phone, WhatsApp or email).\n5. If notify_owner fails, use the technical error response.\nDo not call notify_owner more than once for the same request.\n\nESCALATION TO STAFF\nIf a client complains, is unhappy, or has a request you cannot handle, do NOT try to resolve it yourself. Follow the CONNECT TO A LIVE PERSON procedure above (collect contact details, call notify_owner, then tell the client a team member will contact them soon).\n\nTOOL: check_availability\nUse before ever telling a client a time is free, and only for dates on or after {{ $now.setZone('Africa/Lagos').plus({ days: 2 }).toFormat('yyyy-MM-dd') }}.\nInput: Start (ISO 8601 start of the time range), End (ISO 8601 end of the time range).\nOutput: whether any booking already exists for that date and time.\nCall this again if the client changes the date or time mid-conversation.\n\nTOOL: create_booking\nUse only after the client has confirmed the final details, check_availability shows the slot is free, and both date validation checks pass.\nInput: client name, phone, email, service, Start (ISO 8601 start time), End (ISO 8601 end time = start plus service duration), Title, Description, AttendeeEmail.\nA failure here always means the slot is now taken — do not retry the same slot.\n\nTOOL: verify_email\nCall with the domain of the client email. No domain answer means the address is invalid.\n\nTOOL: check_invite_response\nCall with the event id from create_booking once the client says they approved the invitation.\n\nTOOL: cancel_booking\nCall with the event id when the client declines, refuses to approve, or cancels before approving.\n\nTOOL: send_confirmation_email\nCall only after check_invite_response shows accepted. Send the booking confirmation to the client email.\n\nTOOL: save_booking\nCall only after check_invite_response shows the client accepted the invitation.\nInput: client_name, email, phone, service, appointment_date (YYYY-MM-DD), appointment_time (HH:MM 24h), booking_date (today in YYYY-MM-DD), booking_status (\"Confirmed\").\nThis records the booking in the database so that automatic follow-up messages are sent.\n\nCLIENT INFORMATION TO COLLECT\n- Full name\n- Phone number\n- Email address\n- Service requested\n- Appointment date and time\nDo not ask for a preferred stylist unless the client brings it up.\n\nDATA HANDLING\nSave every booking and client record using the save_booking tool. Do not share one client's information with another client."
         }
       },
-      "id": "685782ba-876b-4750-a67a-0fc260a5ae1e",
+      "id": "6788aaef-0dd3-4e22-bf29-906b146a2c8d",
       "name": "AI Agent — Salon Booking Assistant",
       "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.8,
+      "typeVersion": 3.1,
       "position": [
-        320,
-        48
+        736,
+        -64
       ],
       "onError": "continueErrorOutput"
     },
     {
       "parameters": {
+        "modelName": "models/gemini-3.5-flash-lite",
         "options": {}
       },
-      "id": "97467cde-0844-4898-a6d3-f2b472e5634e",
+      "id": "9e146969-4c61-4654-8210-b7c78e758ed4",
       "name": "Google Gemini Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1.1,
       "position": [
-        64,
-        272
+        480,
+        160
       ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 1000,
       "credentials": {
         "googlePalmApi": {
-          "id": "QiHDvuvCFnhvA0b7",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "GRhOsM2vnFj8ioV6",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     },
     {
       "parameters": {
-        "contextWindowLength": 37
+        "modelName": "models/gemini-3.5-flash-lite",
+        "options": {}
       },
-      "id": "10cf42c8-8303-4e39-a5d9-45545b7b338d",
+      "id": "3d8e1a65-60f1-4efb-835c-08318e8679fe",
+      "name": "Google Gemini Backup Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        592,
+        336
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "GRhOsM2vnFj8ioV6",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Prepare Telegram Input').isExecuted ? $('Prepare Telegram Input').item.json.sessionId : ($('Prepare Website Input').isExecuted ? $('Prepare Website Input').item.json.sessionId : ($('Prepare WhatsApp Input').isExecuted ? $('Prepare WhatsApp Input').item.json.sessionId : $('Chat Trigger').item.json.sessionId)) }}",
+        "contextWindowLength": 10
+      },
+      "id": "5fc3c53c-9e01-47ef-ae14-ca6b9055dd06",
       "name": "Postgres Chat Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.4,
       "position": [
-        192,
-        272
+        608,
+        160
       ],
       "credentials": {
         "postgres": {
-          "id": "gvHWg10xPq9Owwko",
+          "id": "cZKZ4p2ahV7XFp8Q",
           "name": "Postgres account"
         }
       }
@@ -87,34 +116,34 @@
           "queryName": "match_documents"
         }
       },
-      "id": "a74f5daa-7e94-4976-83b9-9cec926bb925",
+      "id": "84c75740-0b74-408e-854b-ec5254a1f816",
       "name": "Knowledge Base",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1.3,
       "position": [
-        320,
-        272
+        736,
+        160
       ],
       "credentials": {
         "supabaseApi": {
-          "id": "udrINtpSClK0NAzV",
+          "id": "xEOkbFwQmqPIkK0g",
           "name": "Supabase account"
         }
       }
     },
     {
       "parameters": {},
-      "id": "d25f8d47-c211-4511-921b-2b770fc721a7",
+      "id": "8d430d38-2fdc-46a7-b510-b1303c4cae4e",
       "name": "KB Embeddings",
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        320,
-        480
+        736,
+        368
       ],
       "credentials": {
         "googlePalmApi": {
-          "id": "QiHDvuvCFnhvA0b7",
+          "id": "08IfnCZze8ExKlkh",
           "name": "Google Gemini(PaLM) Api account"
         }
       }
@@ -135,17 +164,17 @@
         "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', 'ISO 8601 end of the time range to check for conflicts') }}",
         "options": {}
       },
-      "id": "d44beff2-83a1-425b-acd6-ccd8d92bf256",
+      "id": "323d1e2d-a0ec-4bb3-8c1e-6d4e13fc699a",
       "name": "check_availability",
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        592,
-        480
+        1008,
+        368
       ],
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "ATrkyjK06T15fiU1",
+          "id": "c8KtxUw8tlD4av2U",
           "name": "Google Calendar account"
         }
       }
@@ -171,17 +200,17 @@
           "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', `Event title in the form: [Service] - [Client Name]`, 'string') }}"
         }
       },
-      "id": "a82f4c62-a1b3-4edf-902b-b1573e7b852d",
+      "id": "6f62c776-47db-4b15-b959-1accc93d49b7",
       "name": "create_booking",
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        576,
-        272
+        992,
+        160
       ],
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "ATrkyjK06T15fiU1",
+          "id": "c8KtxUw8tlD4av2U",
           "name": "Google Calendar account"
         }
       }
@@ -332,17 +361,17 @@
         },
         "options": {}
       },
-      "id": "3788edc6-3c12-45b4-84d6-8bb6c2b827f5",
+      "id": "4deb86fe-2437-4e8c-b9e0-14edd5929f36",
       "name": "save_booking",
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        704,
-        272
+        1120,
+        160
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "IpJCXuOk2tsquBze",
+          "id": "ryy68YixlPWUCDkj",
           "name": "Google Sheets account"
         }
       }
@@ -360,18 +389,122 @@
           "senderName": "Eterna Salon Assistant"
         }
       },
-      "id": "1168ee1f-ed84-4ef2-a8ac-4258ae4e1e83",
+      "id": "dbba93ae-1c49-47f7-9396-6025c2ef20c0",
       "name": "notify_owner",
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.2,
       "position": [
-        832,
-        272
+        1248,
+        160
       ],
-      "webhookId": "cb4e186c-e5de-44c5-b1f1-c30f0da68e89",
+      "webhookId": "bc80f46f-86a3-4f00-b8ec-afed61591500",
       "credentials": {
         "gmailOAuth2": {
-          "id": "32vwad2Uf9i23CQK",
+          "id": "bitKexe8IFL78sca",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Free check that the domain of a client email address can receive email (DNS MX lookup). Pass only the part after the @ sign. If the answer has Status 3 or no Answer entries, the email domain does not exist.",
+        "url": "={{ /*n8n-auto-generated-fromAI-override*/ 'https://dns.google/resolve?type=MX&name=' + $fromAI('domain', 'The domain part of the email address, the text after the @ sign, for example gmail.com', 'string') }}",
+        "options": {}
+      },
+      "id": "1ce812a5-5534-4188-820a-897f9f2a9730",
+      "name": "verify_email",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.5,
+      "position": [
+        1648,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Read a booking event from the calendar to see whether the client accepted the invitation. Look at attendees[].responseStatus for the client: accepted, declined, tentative or needsAction. Only accepted counts as approved.",
+        "operation": "get",
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": "nteinpraises@gmail.com",
+          "cachedResultName": "nteinpraises@gmail.com"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('EventID', 'The id of the calendar event returned by create_booking', 'string') }}",
+        "options": {}
+      },
+      "id": "e6167193-6924-4a62-a3a9-751900b34886",
+      "name": "check_invite_response",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1776,
+        160
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "c8KtxUw8tlD4av2U",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Delete an unapproved or declined booking event from the calendar so the slot is freed. Use when the client declines the invitation, refuses to approve it, or asks to cancel before approving.",
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": "nteinpraises@gmail.com",
+          "cachedResultName": "nteinpraises@gmail.com"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('EventID', 'The id of the calendar event returned by create_booking', 'string') }}",
+        "options": {
+          "sendUpdates": "all"
+        }
+      },
+      "id": "cd3ffe7c-df3b-4df7-b26f-04c125a3c791",
+      "name": "cancel_booking",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1904,
+        160
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "c8KtxUw8tlD4av2U",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Send the client a booking confirmation email. Call only after check_invite_response shows the client accepted the calendar invitation.",
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', 'The client email address', 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', `Booking confirmed - Eterna Beauty Salon & Spa`, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `Plain text booking confirmation: warm thanks, client name, service, date, full time range, salon location and that a reminder will follow`, 'string') }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Eterna Beauty Salon & Spa"
+        }
+      },
+      "id": "a86b935f-2778-4756-a16f-e43ebf9e281f",
+      "name": "send_confirmation_email",
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        2032,
+        160
+      ],
+      "webhookId": "9152bed9-0767-4558-b8f7-8bfbc17c2d7d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "bitKexe8IFL78sca",
           "name": "Gmail account"
         }
       }
@@ -390,37 +523,14 @@
         },
         "options": {}
       },
-      "id": "1f529414-e89e-406c-aff6-9de4a346fd93",
+      "id": "05988250-d5eb-4e20-a9ee-1dedf5091659",
       "name": "Friendly Error Message",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        912,
-        64
+        2320,
+        128
       ]
-    },
-    {
-      "parameters": {
-        "updates": [
-          "messages"
-        ],
-        "options": {}
-      },
-      "id": "982a2b94-f6c0-4296-9f11-606dda545c35",
-      "name": "WhatsApp Trigger",
-      "type": "n8n-nodes-base.whatsAppTrigger",
-      "typeVersion": 1,
-      "position": [
-        -736,
-        -176
-      ],
-      "webhookId": "dc512957-5e24-4842-95f2-0caa314dc218",
-      "credentials": {
-        "whatsAppTriggerApi": {
-          "id": "RsEn7cmJDvd9KQDp",
-          "name": "WhatsApp OAuth account"
-        }
-      }
     },
     {
       "parameters": {
@@ -447,13 +557,13 @@
         },
         "options": {}
       },
-      "id": "e6ac11b9-33c7-4a62-b887-8643a8675112",
+      "id": "48743e8f-ebed-4b86-b491-589d732ead59",
       "name": "Came From WhatsApp?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        768,
-        -80
+        2512,
+        -48
       ]
     },
     {
@@ -464,21 +574,251 @@
         "textBody": "=Hello",
         "additionalFields": {}
       },
-      "id": "37c1779b-13da-4274-9199-710a8430209e",
+      "id": "5af0f7a3-98ab-4ab9-a9b5-a647eeac7ac5",
       "name": "Send WhatsApp Reply",
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1.1,
       "position": [
-        1632,
-        -96
+        2912,
+        -64
       ],
-      "webhookId": "fab43b57-ff09-4fa0-8596-fdf96648e4cf",
+      "webhookId": "5c9c9c32-a943-4b48-b980-cc1833f6a470",
       "credentials": {
         "whatsAppApi": {
-          "id": "YxasZsfz33D8W02b",
+          "id": "jUDOGlIx6xFPYJTI",
           "name": "WhatsApp account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "from-tg",
+              "leftValue": "={{ $('Telegram Trigger').isExecuted }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1b5431c9-64eb-48c5-bc6a-2ffa4d3ed27c",
+      "name": "Came From Telegram?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2768,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "d6ce8f2f-beb8-449f-bf3d-0c8d9fbb44c4",
+      "name": "Send Telegram Reply",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2992,
+        176
+      ],
+      "webhookId": "380bcf93-d31d-43fe-a3d7-45df0c5920ca",
+      "credentials": {
+        "telegramApi": {
+          "id": "t1NDCRL5UOSg7AgO",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "from-web",
+              "leftValue": "={{ $('Website Chat Webhook').isExecuted }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "2a461120-3177-4826-a441-6a72ee2631de",
+      "name": "Came From Website?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2992,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ reply: $json.output }) }}",
+        "options": {}
+      },
+      "id": "89636faf-2a54-48d7-9bfc-c3cb6dbd29ff",
+      "name": "Respond to Website",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3232,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "0feaf3bd-82c1-4632-92c9-19c434bf0983",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -176
+      ],
+      "webhookId": "8c3bb3b3-70b9-4972-9f57-47a8aaa86925",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "lGFlyT1TuI7eKfFk",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "ab2b946c-01f6-48a2-bedd-0df653119e34",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -480,
+        16
+      ],
+      "webhookId": "bc327cc6-807a-48b4-b01f-bfc9834ea884",
+      "credentials": {
+        "telegramApi": {
+          "id": "t1NDCRL5UOSg7AgO",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "tg-chat-input",
+              "name": "chatInput",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "tg-session-id",
+              "name": "sessionId",
+              "value": "={{ String($json.message.chat.id) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ce7e6731-37d7-40cd-9e59-b9163fbbcf2e",
+      "name": "Prepare Telegram Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -96,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "salon-chat",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "a140ed47-4b5c-429e-a05d-8debe5148dc3",
+      "name": "Website Chat Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        -480,
+        208
+      ],
+      "webhookId": "0f9d24e6-47e0-47ae-b1db-98bcebf6e5ee"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "web-chat-input",
+              "name": "chatInput",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            },
+            {
+              "id": "web-session-id",
+              "name": "sessionId",
+              "value": "={{ $json.body.sessionId }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0d477b43-c4ae-4682-b9f7-a91b7bd24d5c",
+      "name": "Prepare Website Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -96,
+        208
+      ]
     },
     {
       "parameters": {
@@ -504,12 +844,12 @@
         },
         "options": {}
       },
-      "id": "843312b7-0b01-4c47-8a40-b92c201a26ce",
+      "id": "269a171f-0bf5-42b8-8232-173e5089d56f",
       "name": "Only Text Messages",
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -464,
+        -208,
         -48
       ]
     },
@@ -533,12 +873,12 @@
         },
         "options": {}
       },
-      "id": "6e849c32-89bc-48fd-854c-96e3b5dccb89",
+      "id": "bf14a109-d0f5-4876-8e92-f3e880ec9143",
       "name": "Prepare WhatsApp Input",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -240,
+        32,
         240
       ]
     }
@@ -580,6 +920,17 @@
             "node": "AI Agent — Salon Booking Assistant",
             "type": "ai_languageModel",
             "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Backup Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
+            "type": "ai_languageModel",
+            "index": 1
           }
         ]
       ]
@@ -661,11 +1012,102 @@
         ]
       ]
     },
+    "verify_email": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_invite_response": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cancel_booking": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_confirmation_email": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Friendly Error Message": {
       "main": [
         [
           {
             "node": "Came From WhatsApp?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Came From WhatsApp?": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp Reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Came From Telegram?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Came From Telegram?": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Came From Website?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Came From Website?": {
+      "main": [
+        [
+          {
+            "node": "Respond to Website",
             "type": "main",
             "index": 0
           }
@@ -683,11 +1125,44 @@
         ]
       ]
     },
-    "Came From WhatsApp?": {
+    "Telegram Trigger": {
       "main": [
         [
           {
-            "node": "Send WhatsApp Reply",
+            "node": "Prepare Telegram Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Telegram Input": {
+      "main": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Website Chat Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare Website Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Website Input": {
+      "main": [
+        [
+          {
+            "node": "AI Agent — Salon Booking Assistant",
             "type": "main",
             "index": 0
           }
@@ -720,33 +1195,50 @@
   "pinData": {},
   "nodeGroups": [
     {
-      "id": "de81bfdf-a7f0-4298-ad84-123533eed55c",
+      "id": "1380da7c-4d3e-4176-a14b-7740a6261c86",
       "name": "WhatsApp Intake",
       "nodeIds": [
-        "843312b7-0b01-4c47-8a40-b92c201a26ce",
-        "6e849c32-89bc-48fd-854c-96e3b5dccb89"
+        "269a171f-0bf5-42b8-8232-173e5089d56f",
+        "bf14a109-d0f5-4876-8e92-f3e880ec9143"
       ],
       "description": "Receives incoming WhatsApp messages, drops delivery status updates, and passes the sender text and number to the agent."
     },
     {
-      "id": "6d88530b-b4ea-46f0-b547-be4548e58a97",
+      "id": "d1c9b44b-72a9-47ef-bc97-f11255aed78a",
       "name": "Booking Assistant",
       "nodeIds": [
-        "685782ba-876b-4750-a67a-0fc260a5ae1e",
-        "97467cde-0844-4898-a6d3-f2b472e5634e",
-        "10cf42c8-8303-4e39-a5d9-45545b7b338d",
-        "a74f5daa-7e94-4976-83b9-9cec926bb925",
-        "d25f8d47-c211-4511-921b-2b770fc721a7",
-        "d44beff2-83a1-425b-acd6-ccd8d92bf256",
-        "a82f4c62-a1b3-4edf-902b-b1573e7b852d",
-        "3788edc6-3c12-45b4-84d6-8bb6c2b827f5",
-        "1168ee1f-ed84-4ef2-a8ac-4258ae4e1e83"
+        "6788aaef-0dd3-4e22-bf29-906b146a2c8d",
+        "9e146969-4c61-4654-8210-b7c78e758ed4",
+        "3d8e1a65-60f1-4efb-835c-08318e8679fe",
+        "5fc3c53c-9e01-47ef-ae14-ca6b9055dd06",
+        "84c75740-0b74-408e-854b-ec5254a1f816",
+        "8d430d38-2fdc-46a7-b510-b1303c4cae4e",
+        "323d1e2d-a0ec-4bb3-8c1e-6d4e13fc699a",
+        "6f62c776-47db-4b15-b959-1accc93d49b7",
+        "4deb86fe-2437-4e8c-b9e0-14edd5929f36",
+        "dbba93ae-1c49-47f7-9396-6025c2ef20c0",
+        "1ce812a5-5534-4188-820a-897f9f2a9730",
+        "e6167193-6924-4a62-a3a9-751900b34886",
+        "cd3ffe7c-df3b-4df7-b26f-04c125a3c791",
+        "a86b935f-2778-4756-a16f-e43ebf9e281f"
       ],
-      "description": "AI Agent that handles service enquiries, checks calendar availability, creates bookings, and saves client records — no payment required."
+      "description": "AI Agent that handles service enquiries, validates client emails, sends calendar invitations, and confirms bookings once the client approves."
+    },
+    {
+      "id": "7a1a6fb9-26cd-42dc-a19c-ca8d7c81f5a0",
+      "name": "Send Reply",
+      "nodeIds": [
+        "48743e8f-ebed-4b86-b491-589d732ead59",
+        "5af0f7a3-98ab-4ab9-a9b5-a647eeac7ac5",
+        "1b5431c9-64eb-48c5-bc6a-2ffa4d3ed27c",
+        "d6ce8f2f-beb8-449f-bf3d-0c8d9fbb44c4",
+        "2a461120-3177-4826-a441-6a72ee2631de",
+        "89636faf-2a54-48d7-9bfc-c3cb6dbd29ff"
+      ],
+      "description": "Returns the agent answer to whichever channel the message came from: WhatsApp, Telegram, or the website chat. Manual chat shows it in the editor."
     }
   ],
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "80edeee8f2d8bfb96da82bd4496443dd1c6219afc61ef2ce6d22d9ad19bc739d"
+    "instanceId": "7394f3d164372b44e0debb2902e2ada59187547d2dcca67165e3474172e59783"
   }
 }
